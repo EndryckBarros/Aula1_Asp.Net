@@ -14,23 +14,23 @@ namespace ProjetoAula0106.Controller
 
         public static void Adicionar(Clube clube)
         {
-            contexto.ClubeSet.Add(clube);
+            contexto.Clubes.Add(clube);
             contexto.SaveChanges();
         }
 
         public static List<Clube> Listar()
         {
-            return contexto.ClubeSet.ToList();
+            return contexto.Clubes.ToList();
         }
 
         public static Clube Localizar(int id)
         {
-            return contexto.ClubeSet.Find(id);
+            return contexto.Clubes.Find(id);
         }
 
         public static Clube LocalizarPeloJogador(string Jogador)
         {
-            return contexto.ClubeSet.FirstOrDefault(x => x.Jogador.Equals(Jogador));
+            return contexto.Clubes.FirstOrDefault(x => x.Jogador.Equals(Jogador));
         }
 
         public static void Editar(Clube clube)

@@ -6,46 +6,113 @@
     <edmx:StorageModels>
     <Schema Namespace="BaseDados.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityContainer Name="BaseDadosStoreContainer">
-    <EntitySet Name="ClubeSet" EntityType="BaseDados.Store.ClubeSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Clubes" EntityType="BaseDados.Store.Clubes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Jogadores" EntityType="BaseDados.Store.Jogadores" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="ClubeJogador" Association="BaseDados.Store.ClubeJogador">
+      <End Role="Clube" EntitySet="Clubes" />
+      <End Role="Jogador" EntitySet="Jogadores" />
+    </AssociationSet>
   </EntityContainer>
-  <EntityType Name="ClubeSet">
+  <EntityType Name="Clubes">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Jogador" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Posicao" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="NumeroCamisa" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Nome" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Regiao" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
+  <EntityType Name="Jogadores">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nome" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Posicao" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="NumeroCamisa" Type="int" Nullable="false" />
+    <Property Name="ClubeId" Type="int" Nullable="false" />
+    <Property Name="ClubeId1" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="ClubeJogador">
+    <End Role="Clube" Type="BaseDados.Store.Clubes" Multiplicity="1" />
+    <End Role="Jogador" Type="BaseDados.Store.Jogadores" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clube">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Jogador">
+        <PropertyRef Name="ClubeId1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="BaseDados" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
         <EntityContainer Name="BaseDadosContainer" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="ClubeSet" EntityType="BaseDados.Clube" />
+          <EntitySet Name="Clubes" EntityType="BaseDados.Clube" />
+          <EntitySet Name="Jogadores" EntityType="BaseDados.Jogador" />
+          <AssociationSet Name="ClubeJogador" Association="BaseDados.ClubeJogador">
+            <End Role="Clube" EntitySet="Clubes" />
+            <End Role="Jogador" EntitySet="Jogadores" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Clube">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Jogador" Type="String" Nullable="false" />
-          <Property Name="Posicao" Type="String" Nullable="false" />
-          <Property Name="NumeroCamisa" Type="String" Nullable="false" />
+          <Property Name="Nome" Type="String" Nullable="false" />
+          <Property Name="Regiao" Type="String" Nullable="false" />
+          <NavigationProperty Name="Jogador" Relationship="BaseDados.ClubeJogador" FromRole="Clube" ToRole="Jogador" />
         </EntityType>
+        <EntityType Name="Jogador">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" Nullable="false" />
+          <Property Name="Posicao" Type="String" Nullable="false" />
+          <Property Name="NumeroCamisa" Type="Int32" Nullable="false" />
+          <Property Name="ClubeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Clube" Relationship="BaseDados.ClubeJogador" FromRole="Jogador" ToRole="Clube" />
+          <Property Name="ClubeId1" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="ClubeJogador">
+          <End Type="BaseDados.Clube" Role="Clube" Multiplicity="1" />
+          <End Type="BaseDados.Jogador" Role="Jogador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clube">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Jogador">
+              <PropertyRef Name="ClubeId1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
     <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="BaseDadosStoreContainer" CdmEntityContainer="BaseDadosContainer">
-    <EntitySetMapping Name="ClubeSet">
+    <EntitySetMapping Name="Clubes">
       <EntityTypeMapping TypeName="IsTypeOf(BaseDados.Clube)">
-        <MappingFragment StoreEntitySet="ClubeSet">
+        <MappingFragment StoreEntitySet="Clubes">
           <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Jogador" ColumnName="Jogador" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="Regiao" ColumnName="Regiao" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Jogadores">
+      <EntityTypeMapping TypeName="IsTypeOf(BaseDados.Jogador)">
+        <MappingFragment StoreEntitySet="Jogadores">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
           <ScalarProperty Name="Posicao" ColumnName="Posicao" />
           <ScalarProperty Name="NumeroCamisa" ColumnName="NumeroCamisa" />
+          <ScalarProperty Name="ClubeId" ColumnName="ClubeId" />
+          <ScalarProperty Name="ClubeId1" ColumnName="ClubeId1" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

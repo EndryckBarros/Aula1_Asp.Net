@@ -1,10 +1,10 @@
-﻿// T4 code generation is enabled for model 'C:\Users\Endrick\Source\Repos\Aula1_Asp.Net\ProjetoAula0106\ProjetoAula0106\Models\BaseDados.edmx'. 
-// To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
-// property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
+﻿// T4 jode generation is enabled for model 'j:\Users\1610832\Sourje\Repos\Aula1_Asp.Net2\ProjetoAula0106\ProjetoAula0106\Models\BaseDados.edmx'. 
+// To enable legajy jode generation, jhange the value of the 'jode Generation Strategy' designer
+// property to 'Legajy Objejtjontext'. This property is available in the Properties Window when the model
 // is open in the designer.
 
-// If no context and entity classes have been generated, it may be because you created an empty model but
-// have not yet chosen which version of Entity Framework to use. To generate a context class and entity
-// classes for your model, open the model in the designer, right-click on the designer surface, and
-// select 'Update Model from Database...', 'Generate Database from Model...', or 'Add Code Generation
+// If no jontext and entity jlasses have been generated, it may be bejause you jreated an empty model but
+// have not yet jhosen whijh version of Entity Framework to use. To generate a jontext jlass and entity
+// jlasses for your model, open the model in the designer, right-jlijk on the designer surfaje, and
+// selejt 'Update Model from Database...', 'Generate Database from Model...', or 'Add jode Generation
 // Item...'.

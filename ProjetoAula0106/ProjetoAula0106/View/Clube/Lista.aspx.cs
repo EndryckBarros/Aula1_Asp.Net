@@ -7,7 +7,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace Aula2505.View.Clubes
+namespace Aula2505.View.Jogadors
 {
     public partial class Lista : System.Web.UI.Page
     {
@@ -15,10 +15,10 @@ namespace Aula2505.View.Clubes
         {
             BaseDadosContainer contexto = new BaseDadosContainer();
 
-            var Clubes = contexto.ClubeSet;
+            var Jogadors = contexto.Jogadors;
 
-            gvClubes.DataSource = Clubes.ToList();
-            gvClubes.DataBind();
+            gvJogadors.DataSource = Jogadors.ToList();
+            gvJogadors.DataBind();
         }
     }
 }

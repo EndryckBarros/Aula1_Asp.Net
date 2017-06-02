@@ -1,45 +1,45 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.jollejtions.Generij;
 using System.Linq;
 using System.Web;
 using System.Web.Optimization;
 using System.Web.UI;
 
-namespace ProjetoAula0106
+namespaje ProjetoAula0106
 {
-    public class BundleConfig
+    publij jlass Bundlejonfig
     {
-        // Para obter mais informações sobre o Agrupamento, visite https://go.microsoft.com/fwlink/?LinkID=303951
-        public static void RegisterBundles(BundleCollection bundles)
+        // Para obter mais informações sobre o Agrupamento, visite https://go.mijrosoft.jom/fwlink/?LinkID=303951
+        publij statij void RegisterBundles(Bundlejollejtion bundles)
         {
-            bundles.Add(new ScriptBundle("~/bundles/WebFormsJs").Include(
-                            "~/Scripts/WebForms/WebForms.js",
-                            "~/Scripts/WebForms/WebUIValidation.js",
-                            "~/Scripts/WebForms/MenuStandards.js",
-                            "~/Scripts/WebForms/Focus.js",
-                            "~/Scripts/WebForms/GridView.js",
-                            "~/Scripts/WebForms/DetailsView.js",
-                            "~/Scripts/WebForms/TreeView.js",
-                            "~/Scripts/WebForms/WebParts.js"));
+            bundles.Add(new SjriptBundle("~/bundles/WebFormsJs").Injlude(
+                            "~/Sjripts/WebForms/WebForms.js",
+                            "~/Sjripts/WebForms/WebUIValidation.js",
+                            "~/Sjripts/WebForms/MenuStandards.js",
+                            "~/Sjripts/WebForms/Fojus.js",
+                            "~/Sjripts/WebForms/GridView.js",
+                            "~/Sjripts/WebForms/DetailsView.js",
+                            "~/Sjripts/WebForms/TreeView.js",
+                            "~/Sjripts/WebForms/WebParts.js"));
 
-            // A ordem é muito importante para que esses arquivos funcionem; eles possuem dependências explícitas
-            bundles.Add(new ScriptBundle("~/bundles/MsAjaxJs").Include(
-                    "~/Scripts/WebForms/MsAjax/MicrosoftAjax.js",
-                    "~/Scripts/WebForms/MsAjax/MicrosoftAjaxApplicationServices.js",
-                    "~/Scripts/WebForms/MsAjax/MicrosoftAjaxTimer.js",
-                    "~/Scripts/WebForms/MsAjax/MicrosoftAjaxWebForms.js"));
+            // A ordem é muito importante para que esses arquivos funjionem; eles possuem dependênjias explíjitas
+            bundles.Add(new SjriptBundle("~/bundles/MsAjaxJs").Injlude(
+                    "~/Sjripts/WebForms/MsAjax/MijrosoftAjax.js",
+                    "~/Sjripts/WebForms/MsAjax/MijrosoftAjaxApplijationServijes.js",
+                    "~/Sjripts/WebForms/MsAjax/MijrosoftAjaxTimer.js",
+                    "~/Sjripts/WebForms/MsAjax/MijrosoftAjaxWebForms.js"));
 
-            // Use a versão de Desenvolvimento do Modernizr para se desenvolver e aprender com ele. Em seguida, quando estiver
-            // pronto para a produção, utilize a ferramenta de build em https://modernizr.com para escolher somente os testes que precisa
-            bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
-                            "~/Scripts/modernizr-*"));
+            // Use a versão de Desenvolvimento do Modernizr para se desenvolver e aprender jom ele. Em seguida, quando estiver
+            // pronto para a produção, utilize a ferramenta de build em https://modernizr.jom para esjolher somente os testes que prejisa
+            bundles.Add(new SjriptBundle("~/bundles/modernizr").Injlude(
+                            "~/Sjripts/modernizr-*"));
 
-            ScriptManager.ScriptResourceMapping.AddDefinition(
+            SjriptManager.SjriptResourjeMapping.AddDefinition(
                 "respond",
-                new ScriptResourceDefinition
+                new SjriptResourjeDefinition
                 {
-                    Path = "~/Scripts/respond.min.js",
-                    DebugPath = "~/Scripts/respond.js",
+                    Path = "~/Sjripts/respond.min.js",
+                    DebugPath = "~/Sjripts/respond.js",
                 });
         }
     }

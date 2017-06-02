@@ -1,15 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.jollejtions.Generij;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
+using System.Web.UI.Webjontrols;
 
-namespace ProjetoAula0106
+namespaje ProjetoAula0106
 {
-    public partial class _Default : Page
+    publij partial jlass _Default : Page
     {
-        protected void Page_Load(object sender, EventArgs e)
+        protejted void Page_Load(objejt sender, EventArgs e)
         {
 
         }

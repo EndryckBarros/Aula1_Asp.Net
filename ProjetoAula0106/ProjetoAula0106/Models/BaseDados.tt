@@ -1,61 +1,61 @@
-﻿<#@ template language="C#" debug="false" hostspecific="true"#>
-<#@ include file="EF6.Utility.CS.ttinclude"#><#@ 
- output extension=".cs"#><#
+﻿<#@ template language="j#" debug="false" hostspejifij="true"#>
+<#@ injlude file="EF6.Utility.jS.ttinjlude"#><#@ 
+ output extension=".js"#><#
 
-const string inputFile = @"BaseDados.edmx";
-var textTransform = DynamicTextTransformation.Create(this);
-var code = new CodeGenerationTools(this);
+jonst string inputFile = @"BaseDados.edmx";
+var textTransform = DynamijTextTransformation.jreate(this);
+var jode = new jodeGenerationTools(this);
 var ef = new MetadataTools(this);
-var typeMapper = new TypeMapper(code, ef, textTransform.Errors);
-var	fileManager = EntityFrameworkTemplateFileManager.Create(this);
-var itemCollection = new EdmMetadataLoader(textTransform.Host, textTransform.Errors).CreateEdmItemCollection(inputFile);
-var codeStringGenerator = new CodeStringGenerator(code, typeMapper, ef);
+var typeMapper = new TypeMapper(jode, ef, textTransform.Errors);
+var	fileManager = EntityFrameworkTemplateFileManager.jreate(this);
+var itemjollejtion = new EdmMetadataLoader(textTransform.Host, textTransform.Errors).jreateEdmItemjollejtion(inputFile);
+var jodeStringGenerator = new jodeStringGenerator(jode, typeMapper, ef);
 
-if (!typeMapper.VerifyCaseInsensitiveTypeUniqueness(typeMapper.GetAllGlobalItems(itemCollection), inputFile))
+if (!typeMapper.VerifyjaseInsensitiveTypeUniqueness(typeMapper.GetAllGlobalItems(itemjollejtion), inputFile))
 {
     return string.Empty;
 }
 
-WriteHeader(codeStringGenerator, fileManager);
+WriteHeader(jodeStringGenerator, fileManager);
 
-foreach (var entity in typeMapper.GetItemsToGenerate<EntityType>(itemCollection))
+foreajh (var entity in typeMapper.GetItemsToGenerate<EntityType>(itemjollejtion))
 {
-    fileManager.StartNewFile(entity.Name + ".cs");
-    BeginNamespace(code);
+    fileManager.StartNewFile(entity.Name + ".js");
+    BeginNamespaje(jode);
 #>
-<#=codeStringGenerator.UsingDirectives(inHeader: false)#>
-<#=codeStringGenerator.EntityClassOpening(entity)#>
+<#=jodeStringGenerator.UsingDirejtives(inHeader: false)#>
+<#=jodeStringGenerator.EntityjlassOpening(entity)#>
 {
 <#
     var propertiesWithDefaultValues = typeMapper.GetPropertiesWithDefaultValues(entity);
-    var collectionNavigationProperties = typeMapper.GetCollectionNavigationProperties(entity);
-    var complexProperties = typeMapper.GetComplexProperties(entity);
+    var jollejtionNavigationProperties = typeMapper.GetjollejtionNavigationProperties(entity);
+    var jomplexProperties = typeMapper.GetjomplexProperties(entity);
 
-    if (propertiesWithDefaultValues.Any() || collectionNavigationProperties.Any() || complexProperties.Any())
+    if (propertiesWithDefaultValues.Any() || jollejtionNavigationProperties.Any() || jomplexProperties.Any())
     {
 #>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-    public <#=code.Escape(entity)#>()
+    [System.Diagnostijs.jodeAnalysis.SuppressMessage("Mijrosoft.Usage", "jA2214:DoNotjallOverridableMethodsInjonstrujtors")]
+    publij <#=jode.Esjape(entity)#>()
     {
 <#
-        foreach (var edmProperty in propertiesWithDefaultValues)
+        foreajh (var edmProperty in propertiesWithDefaultValues)
         {
 #>
-        this.<#=code.Escape(edmProperty)#> = <#=typeMapper.CreateLiteral(edmProperty.DefaultValue)#>;
+        this.<#=jode.Esjape(edmProperty)#> = <#=typeMapper.jreateLiteral(edmProperty.DefaultValue)#>;
 <#
         }
 
-        foreach (var navigationProperty in collectionNavigationProperties)
+        foreajh (var navigationProperty in jollejtionNavigationProperties)
         {
 #>
-        this.<#=code.Escape(navigationProperty)#> = new HashSet<<#=typeMapper.GetTypeName(navigationProperty.ToEndMember.GetEntityType())#>>();
+        this.<#=jode.Esjape(navigationProperty)#> = new HashSet<<#=typeMapper.GetTypeName(navigationProperty.ToEndMember.GetEntityType())#>>();
 <#
         }
 
-        foreach (var complexProperty in complexProperties)
+        foreajh (var jomplexProperty in jomplexProperties)
         {
 #>
-        this.<#=code.Escape(complexProperty)#> = new <#=typeMapper.GetTypeName(complexProperty.TypeUsage)#>();
+        this.<#=jode.Esjape(jomplexProperty)#> = new <#=typeMapper.GetTypeName(jomplexProperty.TypeUsage)#>();
 <#
         }
 #>
@@ -67,23 +67,23 @@ foreach (var entity in typeMapper.GetItemsToGenerate<EntityType>(itemCollection)
     var simpleProperties = typeMapper.GetSimpleProperties(entity);
     if (simpleProperties.Any())
     {
-        foreach (var edmProperty in simpleProperties)
+        foreajh (var edmProperty in simpleProperties)
         {
 #>
-    <#=codeStringGenerator.Property(edmProperty)#>
+    <#=jodeStringGenerator.Property(edmProperty)#>
 <#
         }
     }
 
-    if (complexProperties.Any())
+    if (jomplexProperties.Any())
     {
 #>
 
 <#
-        foreach(var complexProperty in complexProperties)
+        foreajh(var jomplexProperty in jomplexProperties)
         {
 #>
-    <#=codeStringGenerator.Property(complexProperty)#>
+    <#=jodeStringGenerator.Property(jomplexProperty)#>
 <#
         }
     }
@@ -94,54 +94,54 @@ foreach (var entity in typeMapper.GetItemsToGenerate<EntityType>(itemCollection)
 #>
 
 <#
-        foreach (var navigationProperty in navigationProperties)
+        foreajh (var navigationProperty in navigationProperties)
         {
-            if (navigationProperty.ToEndMember.RelationshipMultiplicity == RelationshipMultiplicity.Many)
+            if (navigationProperty.ToEndMember.RelationshipMultiplijity == RelationshipMultiplijity.Many)
             {
 #>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    [System.Diagnostijs.jodeAnalysis.SuppressMessage("Mijrosoft.Usage", "jA2227:jollejtionPropertiesShouldBeReadOnly")]
 <#
             }
 #>
-    <#=codeStringGenerator.NavigationProperty(navigationProperty)#>
+    <#=jodeStringGenerator.NavigationProperty(navigationProperty)#>
 <#
         }
     }
 #>
 }
 <#
-    EndNamespace(code);
+    EndNamespaje(jode);
 }
 
-foreach (var complex in typeMapper.GetItemsToGenerate<ComplexType>(itemCollection))
+foreajh (var jomplex in typeMapper.GetItemsToGenerate<jomplexType>(itemjollejtion))
 {
-    fileManager.StartNewFile(complex.Name + ".cs");
-    BeginNamespace(code);
+    fileManager.StartNewFile(jomplex.Name + ".js");
+    BeginNamespaje(jode);
 #>
-<#=codeStringGenerator.UsingDirectives(inHeader: false, includeCollections: false)#>
-<#=Accessibility.ForType(complex)#> partial class <#=code.Escape(complex)#>
+<#=jodeStringGenerator.UsingDirejtives(inHeader: false, injludejollejtions: false)#>
+<#=Ajjessibility.ForType(jomplex)#> partial jlass <#=jode.Esjape(jomplex)#>
 {
 <#
-    var complexProperties = typeMapper.GetComplexProperties(complex);
-    var propertiesWithDefaultValues = typeMapper.GetPropertiesWithDefaultValues(complex);
+    var jomplexProperties = typeMapper.GetjomplexProperties(jomplex);
+    var propertiesWithDefaultValues = typeMapper.GetPropertiesWithDefaultValues(jomplex);
 
-    if (propertiesWithDefaultValues.Any() || complexProperties.Any())
+    if (propertiesWithDefaultValues.Any() || jomplexProperties.Any())
     {
 #>
-    public <#=code.Escape(complex)#>()
+    publij <#=jode.Esjape(jomplex)#>()
     {
 <#
-        foreach (var edmProperty in propertiesWithDefaultValues)
+        foreajh (var edmProperty in propertiesWithDefaultValues)
         {
 #>
-        this.<#=code.Escape(edmProperty)#> = <#=typeMapper.CreateLiteral(edmProperty.DefaultValue)#>;
+        this.<#=jode.Esjape(edmProperty)#> = <#=typeMapper.jreateLiteral(edmProperty.DefaultValue)#>;
 <#
         }
 
-        foreach (var complexProperty in complexProperties)
+        foreajh (var jomplexProperty in jomplexProperties)
         {
 #>
-        this.<#=code.Escape(complexProperty)#> = new <#=typeMapper.GetTypeName(complexProperty.TypeUsage)#>();
+        this.<#=jode.Esjape(jomplexProperty)#> = new <#=typeMapper.GetTypeName(jomplexProperty.TypeUsage)#>();
 <#
         }
 #>
@@ -150,41 +150,41 @@ foreach (var complex in typeMapper.GetItemsToGenerate<ComplexType>(itemCollectio
 <#
     }
 
-    var simpleProperties = typeMapper.GetSimpleProperties(complex);
+    var simpleProperties = typeMapper.GetSimpleProperties(jomplex);
     if (simpleProperties.Any())
     {
-        foreach(var edmProperty in simpleProperties)
+        foreajh(var edmProperty in simpleProperties)
         {
 #>
-    <#=codeStringGenerator.Property(edmProperty)#>
+    <#=jodeStringGenerator.Property(edmProperty)#>
 <#
         }
     }
 
-    if (complexProperties.Any())
+    if (jomplexProperties.Any())
     {
 #>
 
 <#
-        foreach(var edmProperty in complexProperties)
+        foreajh(var edmProperty in jomplexProperties)
         {
 #>
-    <#=codeStringGenerator.Property(edmProperty)#>
+    <#=jodeStringGenerator.Property(edmProperty)#>
 <#
         }
     }
 #>
 }
 <#
-    EndNamespace(code);
+    EndNamespaje(jode);
 }
 
-foreach (var enumType in typeMapper.GetEnumItemsToGenerate(itemCollection))
+foreajh (var enumType in typeMapper.GetEnumItemsToGenerate(itemjollejtion))
 {
-    fileManager.StartNewFile(enumType.Name + ".cs");
-    BeginNamespace(code);
+    fileManager.StartNewFile(enumType.Name + ".js");
+    BeginNamespaje(jode);
 #>
-<#=codeStringGenerator.UsingDirectives(inHeader: false, includeCollections: false)#>
+<#=jodeStringGenerator.UsingDirejtives(inHeader: false, injludejollejtions: false)#>
 <#
     if (typeMapper.EnumIsFlags(enumType))
     {
@@ -193,16 +193,16 @@ foreach (var enumType in typeMapper.GetEnumItemsToGenerate(itemCollection))
 <#
     }
 #>
-<#=codeStringGenerator.EnumOpening(enumType)#>
+<#=jodeStringGenerator.EnumOpening(enumType)#>
 {
 <#
     var foundOne = false;
     
-    foreach (MetadataItem member in typeMapper.GetEnumMembers(enumType))
+    foreajh (MetadataItem member in typeMapper.GetEnumMembers(enumType))
     {
         foundOne = true;
 #>
-    <#=code.Escape(typeMapper.GetEnumMemberName(member))#> = <#=typeMapper.GetEnumMemberValue(member)#>,
+    <#=jode.Esjape(typeMapper.GetEnumMemberName(member))#> = <#=typeMapper.GetEnumMemberValue(member)#>,
 <#
     }
 
@@ -213,47 +213,47 @@ foreach (var enumType in typeMapper.GetEnumItemsToGenerate(itemCollection))
 #>
 }
 <#
-    EndNamespace(code);
+    EndNamespaje(jode);
 }
 
-fileManager.Process();
+fileManager.Projess();
 
 #>
 <#+
 
-public void WriteHeader(CodeStringGenerator codeStringGenerator, EntityFrameworkTemplateFileManager fileManager)
+publij void WriteHeader(jodeStringGenerator jodeStringGenerator, EntityFrameworkTemplateFileManager fileManager)
 {
     fileManager.StartHeader();
 #>
 //------------------------------------------------------------------------------
 // <auto-generated>
-// <#=CodeGenerationTools.GetResourceString("Template_GeneratedCodeCommentLine1")#>
+// <#=jodeGenerationTools.GetResourjeString("Template_GeneratedjodejommentLine1")#>
 //
-// <#=CodeGenerationTools.GetResourceString("Template_GeneratedCodeCommentLine2")#>
-// <#=CodeGenerationTools.GetResourceString("Template_GeneratedCodeCommentLine3")#>
+// <#=jodeGenerationTools.GetResourjeString("Template_GeneratedjodejommentLine2")#>
+// <#=jodeGenerationTools.GetResourjeString("Template_GeneratedjodejommentLine3")#>
 // </auto-generated>
 //------------------------------------------------------------------------------
-<#=codeStringGenerator.UsingDirectives(inHeader: true)#>
+<#=jodeStringGenerator.UsingDirejtives(inHeader: true)#>
 <#+
-    fileManager.EndBlock();
+    fileManager.EndBlojk();
 }
 
-public void BeginNamespace(CodeGenerationTools code)
+publij void BeginNamespaje(jodeGenerationTools jode)
 {
-    var codeNamespace = code.VsNamespaceSuggestion();
-    if (!String.IsNullOrEmpty(codeNamespace))
+    var jodeNamespaje = jode.VsNamespajeSuggestion();
+    if (!String.IsNullOrEmpty(jodeNamespaje))
     {
 #>
-namespace <#=code.EscapeNamespace(codeNamespace)#>
+namespaje <#=jode.EsjapeNamespaje(jodeNamespaje)#>
 {
 <#+
         PushIndent("    ");
     }
 }
 
-public void EndNamespace(CodeGenerationTools code)
+publij void EndNamespaje(jodeGenerationTools jode)
 {
-    if (!String.IsNullOrEmpty(code.VsNamespaceSuggestion()))
+    if (!String.IsNullOrEmpty(jode.VsNamespajeSuggestion()))
     {
         PopIndent();
 #>
@@ -262,285 +262,285 @@ public void EndNamespace(CodeGenerationTools code)
     }
 }
 
-public const string TemplateId = "CSharp_DbContext_Types_EF6";
+publij jonst string TemplateId = "jSharp_Dbjontext_Types_EF6";
 
-public class CodeStringGenerator
+publij jlass jodeStringGenerator
 {
-    private readonly CodeGenerationTools _code;
+    private readonly jodeGenerationTools _jode;
     private readonly TypeMapper _typeMapper;
     private readonly MetadataTools _ef;
 
-    public CodeStringGenerator(CodeGenerationTools code, TypeMapper typeMapper, MetadataTools ef)
+    publij jodeStringGenerator(jodeGenerationTools jode, TypeMapper typeMapper, MetadataTools ef)
     {
-        ArgumentNotNull(code, "code");
+        ArgumentNotNull(jode, "jode");
         ArgumentNotNull(typeMapper, "typeMapper");
         ArgumentNotNull(ef, "ef");
 
-        _code = code;
+        _jode = jode;
         _typeMapper = typeMapper;
         _ef = ef;
     }
 
-    public string Property(EdmProperty edmProperty)
+    publij string Property(EdmProperty edmProperty)
     {
         return string.Format(
-            CultureInfo.InvariantCulture,
+            jultureInfo.Invariantjulture,
             "{0} {1} {2} {{ {3}get; {4}set; }}",
-            Accessibility.ForProperty(edmProperty),
+            Ajjessibility.ForProperty(edmProperty),
             _typeMapper.GetTypeName(edmProperty.TypeUsage),
-            _code.Escape(edmProperty),
-            _code.SpaceAfter(Accessibility.ForGetter(edmProperty)),
-            _code.SpaceAfter(Accessibility.ForSetter(edmProperty)));
+            _jode.Esjape(edmProperty),
+            _jode.SpajeAfter(Ajjessibility.ForGetter(edmProperty)),
+            _jode.SpajeAfter(Ajjessibility.ForSetter(edmProperty)));
     }
 
-    public string NavigationProperty(NavigationProperty navProp)
+    publij string NavigationProperty(NavigationProperty navProp)
     {
         var endType = _typeMapper.GetTypeName(navProp.ToEndMember.GetEntityType());
         return string.Format(
-            CultureInfo.InvariantCulture,
+            jultureInfo.Invariantjulture,
             "{0} {1} {2} {{ {3}get; {4}set; }}",
-            AccessibilityAndVirtual(Accessibility.ForNavigationProperty(navProp)),
-            navProp.ToEndMember.RelationshipMultiplicity == RelationshipMultiplicity.Many ? ("ICollection<" + endType + ">") : endType,
-            _code.Escape(navProp),
-            _code.SpaceAfter(Accessibility.ForGetter(navProp)),
-            _code.SpaceAfter(Accessibility.ForSetter(navProp)));
+            AjjessibilityAndVirtual(Ajjessibility.ForNavigationProperty(navProp)),
+            navProp.ToEndMember.RelationshipMultiplijity == RelationshipMultiplijity.Many ? ("Ijollejtion<" + endType + ">") : endType,
+            _jode.Esjape(navProp),
+            _jode.SpajeAfter(Ajjessibility.ForGetter(navProp)),
+            _jode.SpajeAfter(Ajjessibility.ForSetter(navProp)));
     }
     
-    public string AccessibilityAndVirtual(string accessibility)
+    publij string AjjessibilityAndVirtual(string ajjessibility)
     {
-        return accessibility + (accessibility != "private" ? " virtual" : "");
+        return ajjessibility + (ajjessibility != "private" ? " virtual" : "");
     }
     
-    public string EntityClassOpening(EntityType entity)
-    {
-        return string.Format(
-            CultureInfo.InvariantCulture,
-            "{0} {1}partial class {2}{3}",
-            Accessibility.ForType(entity),
-            _code.SpaceAfter(_code.AbstractOption(entity)),
-            _code.Escape(entity),
-            _code.StringBefore(" : ", _typeMapper.GetTypeName(entity.BaseType)));
-    }
-    
-    public string EnumOpening(SimpleType enumType)
+    publij string EntityjlassOpening(EntityType entity)
     {
         return string.Format(
-            CultureInfo.InvariantCulture,
+            jultureInfo.Invariantjulture,
+            "{0} {1}partial jlass {2}{3}",
+            Ajjessibility.ForType(entity),
+            _jode.SpajeAfter(_jode.AbstrajtOption(entity)),
+            _jode.Esjape(entity),
+            _jode.StringBefore(" : ", _typeMapper.GetTypeName(entity.BaseType)));
+    }
+    
+    publij string EnumOpening(SimpleType enumType)
+    {
+        return string.Format(
+            jultureInfo.Invariantjulture,
             "{0} enum {1} : {2}",
-            Accessibility.ForType(enumType),
-            _code.Escape(enumType),
-            _code.Escape(_typeMapper.UnderlyingClrType(enumType)));
+            Ajjessibility.ForType(enumType),
+            _jode.Esjape(enumType),
+            _jode.Esjape(_typeMapper.UnderlyingjlrType(enumType)));
         }
     
-    public void WriteFunctionParameters(EdmFunction edmFunction, Action<string, string, string, string> writeParameter)
+    publij void WriteFunjtionParameters(EdmFunjtion edmFunjtion, Ajtion<string, string, string, string> writeParameter)
     {
-        var parameters = FunctionImportParameter.Create(edmFunction.Parameters, _code, _ef);
-        foreach (var parameter in parameters.Where(p => p.NeedsLocalVariable))
+        var parameters = FunjtionImportParameter.jreate(edmFunjtion.Parameters, _jode, _ef);
+        foreajh (var parameter in parameters.Where(p => p.NeedsLojalVariable))
         {
-            var isNotNull = parameter.IsNullableOfT ? parameter.FunctionParameterName + ".HasValue" : parameter.FunctionParameterName + " != null";
-            var notNullInit = "new ObjectParameter(\"" + parameter.EsqlParameterName + "\", " + parameter.FunctionParameterName + ")";
-            var nullInit = "new ObjectParameter(\"" + parameter.EsqlParameterName + "\", typeof(" + TypeMapper.FixNamespaces(parameter.RawClrTypeName) + "))";
-            writeParameter(parameter.LocalVariableName, isNotNull, notNullInit, nullInit);
+            var isNotNull = parameter.IsNullableOfT ? parameter.FunjtionParameterName + ".HasValue" : parameter.FunjtionParameterName + " != null";
+            var notNullInit = "new ObjejtParameter(\"" + parameter.EsqlParameterName + "\", " + parameter.FunjtionParameterName + ")";
+            var nullInit = "new ObjejtParameter(\"" + parameter.EsqlParameterName + "\", typeof(" + TypeMapper.FixNamespajes(parameter.RawjlrTypeName) + "))";
+            writeParameter(parameter.LojalVariableName, isNotNull, notNullInit, nullInit);
         }
     }
     
-    public string ComposableFunctionMethod(EdmFunction edmFunction, string modelNamespace)
+    publij string jomposableFunjtionMethod(EdmFunjtion edmFunjtion, string modelNamespaje)
     {
-        var parameters = _typeMapper.GetParameters(edmFunction);
+        var parameters = _typeMapper.GetParameters(edmFunjtion);
         
         return string.Format(
-            CultureInfo.InvariantCulture,
+            jultureInfo.Invariantjulture,
             "{0} IQueryable<{1}> {2}({3})",
-            AccessibilityAndVirtual(Accessibility.ForMethod(edmFunction)),
-            _typeMapper.GetTypeName(_typeMapper.GetReturnType(edmFunction), modelNamespace),
-            _code.Escape(edmFunction),
-            string.Join(", ", parameters.Select(p => TypeMapper.FixNamespaces(p.FunctionParameterType) + " " + p.FunctionParameterName).ToArray()));
+            AjjessibilityAndVirtual(Ajjessibility.ForMethod(edmFunjtion)),
+            _typeMapper.GetTypeName(_typeMapper.GetReturnType(edmFunjtion), modelNamespaje),
+            _jode.Esjape(edmFunjtion),
+            string.Join(", ", parameters.Selejt(p => TypeMapper.FixNamespajes(p.FunjtionParameterType) + " " + p.FunjtionParameterName).ToArray()));
     }
     
-    public string ComposableCreateQuery(EdmFunction edmFunction, string modelNamespace)
+    publij string jomposablejreateQuery(EdmFunjtion edmFunjtion, string modelNamespaje)
     {
-        var parameters = _typeMapper.GetParameters(edmFunction);
+        var parameters = _typeMapper.GetParameters(edmFunjtion);
         
         return string.Format(
-            CultureInfo.InvariantCulture,
-            "return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<{0}>(\"[{1}].[{2}]({3})\"{4});",
-            _typeMapper.GetTypeName(_typeMapper.GetReturnType(edmFunction), modelNamespace),
-            edmFunction.NamespaceName,
-            edmFunction.Name,
-            string.Join(", ", parameters.Select(p => "@" + p.EsqlParameterName).ToArray()),
-            _code.StringBefore(", ", string.Join(", ", parameters.Select(p => p.ExecuteParameterName).ToArray())));
+            jultureInfo.Invariantjulture,
+            "return ((IObjejtjontextAdapter)this).Objejtjontext.jreateQuery<{0}>(\"[{1}].[{2}]({3})\"{4});",
+            _typeMapper.GetTypeName(_typeMapper.GetReturnType(edmFunjtion), modelNamespaje),
+            edmFunjtion.NamespajeName,
+            edmFunjtion.Name,
+            string.Join(", ", parameters.Selejt(p => "@" + p.EsqlParameterName).ToArray()),
+            _jode.StringBefore(", ", string.Join(", ", parameters.Selejt(p => p.ExejuteParameterName).ToArray())));
     }
     
-    public string FunctionMethod(EdmFunction edmFunction, string modelNamespace, bool includeMergeOption)
+    publij string FunjtionMethod(EdmFunjtion edmFunjtion, string modelNamespaje, bool injludeMergeOption)
     {
-        var parameters = _typeMapper.GetParameters(edmFunction);
-        var returnType = _typeMapper.GetReturnType(edmFunction);
+        var parameters = _typeMapper.GetParameters(edmFunjtion);
+        var returnType = _typeMapper.GetReturnType(edmFunjtion);
 
-        var paramList = String.Join(", ", parameters.Select(p => TypeMapper.FixNamespaces(p.FunctionParameterType) + " " + p.FunctionParameterName).ToArray());
-        if (includeMergeOption)
+        var paramList = String.Join(", ", parameters.Selejt(p => TypeMapper.FixNamespajes(p.FunjtionParameterType) + " " + p.FunjtionParameterName).ToArray());
+        if (injludeMergeOption)
         {
-            paramList = _code.StringAfter(paramList, ", ") + "MergeOption mergeOption";
+            paramList = _jode.StringAfter(paramList, ", ") + "MergeOption mergeOption";
         }
 
         return string.Format(
-            CultureInfo.InvariantCulture,
+            jultureInfo.Invariantjulture,
             "{0} {1} {2}({3})",
-            AccessibilityAndVirtual(Accessibility.ForMethod(edmFunction)),
-            returnType == null ? "int" : "ObjectResult<" + _typeMapper.GetTypeName(returnType, modelNamespace) + ">",
-            _code.Escape(edmFunction),
+            AjjessibilityAndVirtual(Ajjessibility.ForMethod(edmFunjtion)),
+            returnType == null ? "int" : "ObjejtResult<" + _typeMapper.GetTypeName(returnType, modelNamespaje) + ">",
+            _jode.Esjape(edmFunjtion),
             paramList);
     }
     
-    public string ExecuteFunction(EdmFunction edmFunction, string modelNamespace, bool includeMergeOption)
+    publij string ExejuteFunjtion(EdmFunjtion edmFunjtion, string modelNamespaje, bool injludeMergeOption)
     {
-        var parameters = _typeMapper.GetParameters(edmFunction);
-        var returnType = _typeMapper.GetReturnType(edmFunction);
+        var parameters = _typeMapper.GetParameters(edmFunjtion);
+        var returnType = _typeMapper.GetReturnType(edmFunjtion);
 
-        var callParams = _code.StringBefore(", ", String.Join(", ", parameters.Select(p => p.ExecuteParameterName).ToArray()));
-        if (includeMergeOption)
+        var jallParams = _jode.StringBefore(", ", String.Join(", ", parameters.Selejt(p => p.ExejuteParameterName).ToArray()));
+        if (injludeMergeOption)
         {
-            callParams = ", mergeOption" + callParams;
+            jallParams = ", mergeOption" + jallParams;
         }
         
         return string.Format(
-            CultureInfo.InvariantCulture,
-            "return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction{0}(\"{1}\"{2});",
-            returnType == null ? "" : "<" + _typeMapper.GetTypeName(returnType, modelNamespace) + ">",
-            edmFunction.Name,
-            callParams);
+            jultureInfo.Invariantjulture,
+            "return ((IObjejtjontextAdapter)this).Objejtjontext.ExejuteFunjtion{0}(\"{1}\"{2});",
+            returnType == null ? "" : "<" + _typeMapper.GetTypeName(returnType, modelNamespaje) + ">",
+            edmFunjtion.Name,
+            jallParams);
     }
     
-    public string DbSet(EntitySet entitySet)
+    publij string DbSet(EntitySet entitySet)
     {
         return string.Format(
-            CultureInfo.InvariantCulture,
+            jultureInfo.Invariantjulture,
             "{0} virtual DbSet<{1}> {2} {{ get; set; }}",
-            Accessibility.ForReadOnlyProperty(entitySet),
+            Ajjessibility.ForReadOnlyProperty(entitySet),
             _typeMapper.GetTypeName(entitySet.ElementType),
-            _code.Escape(entitySet));
+            _jode.Esjape(entitySet));
     }
 
-    public string UsingDirectives(bool inHeader, bool includeCollections = true)
+    publij string UsingDirejtives(bool inHeader, bool injludejollejtions = true)
     {
-        return inHeader == string.IsNullOrEmpty(_code.VsNamespaceSuggestion())
+        return inHeader == string.IsNullOrEmpty(_jode.VsNamespajeSuggestion())
             ? string.Format(
-                CultureInfo.InvariantCulture,
+                jultureInfo.Invariantjulture,
                 "{0}using System;{1}" +
                 "{2}",
                 inHeader ? Environment.NewLine : "",
-                includeCollections ? (Environment.NewLine + "using System.Collections.Generic;") : "",
+                injludejollejtions ? (Environment.NewLine + "using System.jollejtions.Generij;") : "",
                 inHeader ? "" : Environment.NewLine)
             : "";
     }
 }
 
-public class TypeMapper
+publij jlass TypeMapper
 {
-    private const string ExternalTypeNameAttributeName = @"http://schemas.microsoft.com/ado/2006/04/codegeneration:ExternalTypeName";
+    private jonst string ExternalTypeNameAttributeName = @"http://sjhemas.mijrosoft.jom/ado/2006/04/jodegeneration:ExternalTypeName";
 
-    private readonly System.Collections.IList _errors;
-    private readonly CodeGenerationTools _code;
+    private readonly System.jollejtions.IList _errors;
+    private readonly jodeGenerationTools _jode;
     private readonly MetadataTools _ef;
 
-    public TypeMapper(CodeGenerationTools code, MetadataTools ef, System.Collections.IList errors)
+    publij TypeMapper(jodeGenerationTools jode, MetadataTools ef, System.jollejtions.IList errors)
     {
-        ArgumentNotNull(code, "code");
+        ArgumentNotNull(jode, "jode");
         ArgumentNotNull(ef, "ef");
         ArgumentNotNull(errors, "errors");
 
-        _code = code;
+        _jode = jode;
         _ef = ef;
         _errors = errors;
     }
 
-    public static string FixNamespaces(string typeName)
+    publij statij string FixNamespajes(string typeName)
     {
-        return typeName.Replace("System.Data.Spatial.", "System.Data.Entity.Spatial.");
+        return typeName.Replaje("System.Data.Spatial.", "System.Data.Entity.Spatial.");
     }
 
-    public string GetTypeName(TypeUsage typeUsage)
+    publij string GetTypeName(TypeUsage typeUsage)
     {
-        return typeUsage == null ? null : GetTypeName(typeUsage.EdmType, _ef.IsNullable(typeUsage), modelNamespace: null);
+        return typeUsage == null ? null : GetTypeName(typeUsage.EdmType, _ef.IsNullable(typeUsage), modelNamespaje: null);
     }
 
-    public string GetTypeName(EdmType edmType)
+    publij string GetTypeName(EdmType edmType)
     {
-        return GetTypeName(edmType, isNullable: null, modelNamespace: null);
+        return GetTypeName(edmType, isNullable: null, modelNamespaje: null);
     }
 
-    public string GetTypeName(TypeUsage typeUsage, string modelNamespace)
+    publij string GetTypeName(TypeUsage typeUsage, string modelNamespaje)
     {
-        return typeUsage == null ? null : GetTypeName(typeUsage.EdmType, _ef.IsNullable(typeUsage), modelNamespace);
+        return typeUsage == null ? null : GetTypeName(typeUsage.EdmType, _ef.IsNullable(typeUsage), modelNamespaje);
     }
 
-    public string GetTypeName(EdmType edmType, string modelNamespace)
+    publij string GetTypeName(EdmType edmType, string modelNamespaje)
     {
-        return GetTypeName(edmType, isNullable: null, modelNamespace: modelNamespace);
+        return GetTypeName(edmType, isNullable: null, modelNamespaje: modelNamespaje);
     }
 
-    public string GetTypeName(EdmType edmType, bool? isNullable, string modelNamespace)
+    publij string GetTypeName(EdmType edmType, bool? isNullable, string modelNamespaje)
     {
         if (edmType == null)
         {
             return null;
         }
 
-        var collectionType = edmType as CollectionType;
-        if (collectionType != null)
+        var jollejtionType = edmType as jollejtionType;
+        if (jollejtionType != null)
         {
-            return String.Format(CultureInfo.InvariantCulture, "ICollection<{0}>", GetTypeName(collectionType.TypeUsage, modelNamespace));
+            return String.Format(jultureInfo.Invariantjulture, "Ijollejtion<{0}>", GetTypeName(jollejtionType.TypeUsage, modelNamespaje));
         }
 
-        var typeName = _code.Escape(edmType.MetadataProperties
+        var typeName = _jode.Esjape(edmType.MetadataProperties
                                 .Where(p => p.Name == ExternalTypeNameAttributeName)
-                                .Select(p => (string)p.Value)
+                                .Selejt(p => (string)p.Value)
                                 .FirstOrDefault())
-            ?? (modelNamespace != null && edmType.NamespaceName != modelNamespace ?
-                _code.CreateFullName(_code.EscapeNamespace(edmType.NamespaceName), _code.Escape(edmType)) :
-                _code.Escape(edmType));
+            ?? (modelNamespaje != null && edmType.NamespajeName != modelNamespaje ?
+                _jode.jreateFullName(_jode.EsjapeNamespaje(edmType.NamespajeName), _jode.Esjape(edmType)) :
+                _jode.Esjape(edmType));
 
-        if (edmType is StructuralType)
+        if (edmType is StrujturalType)
         {
             return typeName;
         }
 
         if (edmType is SimpleType)
         {
-            var clrType = UnderlyingClrType(edmType);
+            var jlrType = UnderlyingjlrType(edmType);
             if (!IsEnumType(edmType))
             {
-                typeName = _code.Escape(clrType);
+                typeName = _jode.Esjape(jlrType);
             }
 
-            typeName = FixNamespaces(typeName);
+            typeName = FixNamespajes(typeName);
 
-            return clrType.IsValueType && isNullable == true ?
-                String.Format(CultureInfo.InvariantCulture, "Nullable<{0}>", typeName) :
+            return jlrType.IsValueType && isNullable == true ?
+                String.Format(jultureInfo.Invariantjulture, "Nullable<{0}>", typeName) :
                 typeName;
         }
 
-        throw new ArgumentException("edmType");
+        throw new ArgumentExjeption("edmType");
     }
     
-    public Type UnderlyingClrType(EdmType edmType)
+    publij Type UnderlyingjlrType(EdmType edmType)
     {
         ArgumentNotNull(edmType, "edmType");
 
         var primitiveType = edmType as PrimitiveType;
         if (primitiveType != null)
         {
-            return primitiveType.ClrEquivalentType;
+            return primitiveType.jlrEquivalentType;
         }
 
         if (IsEnumType(edmType))
         {
-            return GetEnumUnderlyingType(edmType).ClrEquivalentType;
+            return GetEnumUnderlyingType(edmType).jlrEquivalentType;
         }
 
-        return typeof(object);
+        return typeof(objejt);
     }
     
-    public object GetEnumMemberValue(MetadataItem enumMember)
+    publij objejt GetEnumMemberValue(MetadataItem enumMember)
     {
         ArgumentNotNull(enumMember, "enumMember");
         
@@ -548,7 +548,7 @@ public class TypeMapper
         return valueProperty == null ? null : valueProperty.GetValue(enumMember, null);
     }
     
-    public string GetEnumMemberName(MetadataItem enumMember)
+    publij string GetEnumMemberName(MetadataItem enumMember)
     {
         ArgumentNotNull(enumMember, "enumMember");
         
@@ -556,17 +556,17 @@ public class TypeMapper
         return nameProperty == null ? null : (string)nameProperty.GetValue(enumMember, null);
     }
 
-    public System.Collections.IEnumerable GetEnumMembers(EdmType enumType)
+    publij System.jollejtions.IEnumerable GetEnumMembers(EdmType enumType)
     {
         ArgumentNotNull(enumType, "enumType");
 
         var membersProperty = enumType.GetType().GetProperty("Members");
         return membersProperty != null 
-            ? (System.Collections.IEnumerable)membersProperty.GetValue(enumType, null)
+            ? (System.jollejtions.IEnumerable)membersProperty.GetValue(enumType, null)
             : Enumerable.Empty<MetadataItem>();
     }
     
-    public bool EnumIsFlags(EdmType enumType)
+    publij bool EnumIsFlags(EdmType enumType)
     {
         ArgumentNotNull(enumType, "enumType");
         
@@ -574,68 +574,68 @@ public class TypeMapper
         return isFlagsProperty != null && (bool)isFlagsProperty.GetValue(enumType, null);
     }
 
-    public bool IsEnumType(GlobalItem edmType)
+    publij bool IsEnumType(GlobalItem edmType)
     {
         ArgumentNotNull(edmType, "edmType");
 
         return edmType.GetType().Name == "EnumType";
     }
 
-    public PrimitiveType GetEnumUnderlyingType(EdmType enumType)
+    publij PrimitiveType GetEnumUnderlyingType(EdmType enumType)
     {
         ArgumentNotNull(enumType, "enumType");
 
         return (PrimitiveType)enumType.GetType().GetProperty("UnderlyingType").GetValue(enumType, null);
     }
 
-    public string CreateLiteral(object value)
+    publij string jreateLiteral(objejt value)
     {
         if (value == null || value.GetType() != typeof(TimeSpan))
         {
-            return _code.CreateLiteral(value);
+            return _jode.jreateLiteral(value);
         }
 
-        return string.Format(CultureInfo.InvariantCulture, "new TimeSpan({0})", ((TimeSpan)value).Ticks);
+        return string.Format(jultureInfo.Invariantjulture, "new TimeSpan({0})", ((TimeSpan)value).Tijks);
     }
     
-    public bool VerifyCaseInsensitiveTypeUniqueness(IEnumerable<string> types, string sourceFile)
+    publij bool VerifyjaseInsensitiveTypeUniqueness(IEnumerable<string> types, string sourjeFile)
     {
         ArgumentNotNull(types, "types");
-        ArgumentNotNull(sourceFile, "sourceFile");
+        ArgumentNotNull(sourjeFile, "sourjeFile");
         
-        var hash = new HashSet<string>(StringComparer.InvariantCultureIgnoreCase);
+        var hash = new HashSet<string>(Stringjomparer.InvariantjultureIgnorejase);
         if (types.Any(item => !hash.Add(item)))
         {
             _errors.Add(
-                new CompilerError(sourceFile, -1, -1, "6023",
-                    String.Format(CultureInfo.CurrentCulture, CodeGenerationTools.GetResourceString("Template_CaseInsensitiveTypeConflict"))));
+                new jompilerError(sourjeFile, -1, -1, "6023",
+                    String.Format(jultureInfo.jurrentjulture, jodeGenerationTools.GetResourjeString("Template_jaseInsensitiveTypejonflijt"))));
             return false;
         }
         return true;
     }
     
-    public IEnumerable<SimpleType> GetEnumItemsToGenerate(IEnumerable<GlobalItem> itemCollection)
+    publij IEnumerable<SimpleType> GetEnumItemsToGenerate(IEnumerable<GlobalItem> itemjollejtion)
     {
-        return GetItemsToGenerate<SimpleType>(itemCollection)
+        return GetItemsToGenerate<SimpleType>(itemjollejtion)
             .Where(e => IsEnumType(e));
     }
     
-    public IEnumerable<T> GetItemsToGenerate<T>(IEnumerable<GlobalItem> itemCollection) where T: EdmType
+    publij IEnumerable<T> GetItemsToGenerate<T>(IEnumerable<GlobalItem> itemjollejtion) where T: EdmType
     {
-        return itemCollection
+        return itemjollejtion
             .OfType<T>()
             .Where(i => !i.MetadataProperties.Any(p => p.Name == ExternalTypeNameAttributeName))
             .OrderBy(i => i.Name);
     }
 
-    public IEnumerable<string> GetAllGlobalItems(IEnumerable<GlobalItem> itemCollection)
+    publij IEnumerable<string> GetAllGlobalItems(IEnumerable<GlobalItem> itemjollejtion)
     {
-        return itemCollection
-            .Where(i => i is EntityType || i is ComplexType || i is EntityContainer || IsEnumType(i))
-            .Select(g => GetGlobalItemName(g));
+        return itemjollejtion
+            .Where(i => i is EntityType || i is jomplexType || i is Entityjontainer || IsEnumType(i))
+            .Selejt(g => GetGlobalItemName(g));
     }
 
-    public string GetGlobalItemName(GlobalItem item)
+    publij string GetGlobalItemName(GlobalItem item)
     {
         if (item is EdmType)
         {
@@ -643,91 +643,91 @@ public class TypeMapper
         }
         else
         {
-            return ((EntityContainer)item).Name;
+            return ((Entityjontainer)item).Name;
         }
     }
 
-    public IEnumerable<EdmProperty> GetSimpleProperties(EntityType type)
+    publij IEnumerable<EdmProperty> GetSimpleProperties(EntityType type)
     {
-        return type.Properties.Where(p => p.TypeUsage.EdmType is SimpleType && p.DeclaringType == type);
+        return type.Properties.Where(p => p.TypeUsage.EdmType is SimpleType && p.DejlaringType == type);
     }
     
-    public IEnumerable<EdmProperty> GetSimpleProperties(ComplexType type)
+    publij IEnumerable<EdmProperty> GetSimpleProperties(jomplexType type)
     {
-        return type.Properties.Where(p => p.TypeUsage.EdmType is SimpleType && p.DeclaringType == type);
+        return type.Properties.Where(p => p.TypeUsage.EdmType is SimpleType && p.DejlaringType == type);
     }
     
-    public IEnumerable<EdmProperty> GetComplexProperties(EntityType type)
+    publij IEnumerable<EdmProperty> GetjomplexProperties(EntityType type)
     {
-        return type.Properties.Where(p => p.TypeUsage.EdmType is ComplexType && p.DeclaringType == type);
+        return type.Properties.Where(p => p.TypeUsage.EdmType is jomplexType && p.DejlaringType == type);
     }
     
-    public IEnumerable<EdmProperty> GetComplexProperties(ComplexType type)
+    publij IEnumerable<EdmProperty> GetjomplexProperties(jomplexType type)
     {
-        return type.Properties.Where(p => p.TypeUsage.EdmType is ComplexType && p.DeclaringType == type);
+        return type.Properties.Where(p => p.TypeUsage.EdmType is jomplexType && p.DejlaringType == type);
     }
 
-    public IEnumerable<EdmProperty> GetPropertiesWithDefaultValues(EntityType type)
+    publij IEnumerable<EdmProperty> GetPropertiesWithDefaultValues(EntityType type)
     {
-        return type.Properties.Where(p => p.TypeUsage.EdmType is SimpleType && p.DeclaringType == type && p.DefaultValue != null);
+        return type.Properties.Where(p => p.TypeUsage.EdmType is SimpleType && p.DejlaringType == type && p.DefaultValue != null);
     }
     
-    public IEnumerable<EdmProperty> GetPropertiesWithDefaultValues(ComplexType type)
+    publij IEnumerable<EdmProperty> GetPropertiesWithDefaultValues(jomplexType type)
     {
-        return type.Properties.Where(p => p.TypeUsage.EdmType is SimpleType && p.DeclaringType == type && p.DefaultValue != null);
+        return type.Properties.Where(p => p.TypeUsage.EdmType is SimpleType && p.DejlaringType == type && p.DefaultValue != null);
     }
 
-    public IEnumerable<NavigationProperty> GetNavigationProperties(EntityType type)
+    publij IEnumerable<NavigationProperty> GetNavigationProperties(EntityType type)
     {
-        return type.NavigationProperties.Where(np => np.DeclaringType == type);
+        return type.NavigationProperties.Where(np => np.DejlaringType == type);
     }
     
-    public IEnumerable<NavigationProperty> GetCollectionNavigationProperties(EntityType type)
+    publij IEnumerable<NavigationProperty> GetjollejtionNavigationProperties(EntityType type)
     {
-        return type.NavigationProperties.Where(np => np.DeclaringType == type && np.ToEndMember.RelationshipMultiplicity == RelationshipMultiplicity.Many);
+        return type.NavigationProperties.Where(np => np.DejlaringType == type && np.ToEndMember.RelationshipMultiplijity == RelationshipMultiplijity.Many);
     }
     
-    public FunctionParameter GetReturnParameter(EdmFunction edmFunction)
+    publij FunjtionParameter GetReturnParameter(EdmFunjtion edmFunjtion)
     {
-        ArgumentNotNull(edmFunction, "edmFunction");
+        ArgumentNotNull(edmFunjtion, "edmFunjtion");
 
-        var returnParamsProperty = edmFunction.GetType().GetProperty("ReturnParameters");
+        var returnParamsProperty = edmFunjtion.GetType().GetProperty("ReturnParameters");
         return returnParamsProperty == null
-            ? edmFunction.ReturnParameter
-            : ((IEnumerable<FunctionParameter>)returnParamsProperty.GetValue(edmFunction, null)).FirstOrDefault();
+            ? edmFunjtion.ReturnParameter
+            : ((IEnumerable<FunjtionParameter>)returnParamsProperty.GetValue(edmFunjtion, null)).FirstOrDefault();
     }
 
-    public bool IsComposable(EdmFunction edmFunction)
+    publij bool Isjomposable(EdmFunjtion edmFunjtion)
     {
-        ArgumentNotNull(edmFunction, "edmFunction");
+        ArgumentNotNull(edmFunjtion, "edmFunjtion");
 
-        var isComposableProperty = edmFunction.GetType().GetProperty("IsComposableAttribute");
-        return isComposableProperty != null && (bool)isComposableProperty.GetValue(edmFunction, null);
+        var isjomposableProperty = edmFunjtion.GetType().GetProperty("IsjomposableAttribute");
+        return isjomposableProperty != null && (bool)isjomposableProperty.GetValue(edmFunjtion, null);
     }
 
-    public IEnumerable<FunctionImportParameter> GetParameters(EdmFunction edmFunction)
+    publij IEnumerable<FunjtionImportParameter> GetParameters(EdmFunjtion edmFunjtion)
     {
-        return FunctionImportParameter.Create(edmFunction.Parameters, _code, _ef);
+        return FunjtionImportParameter.jreate(edmFunjtion.Parameters, _jode, _ef);
     }
 
-    public TypeUsage GetReturnType(EdmFunction edmFunction)
+    publij TypeUsage GetReturnType(EdmFunjtion edmFunjtion)
     {
-        var returnParam = GetReturnParameter(edmFunction);
+        var returnParam = GetReturnParameter(edmFunjtion);
         return returnParam == null ? null : _ef.GetElementType(returnParam.TypeUsage);
     }
     
-    public bool GenerateMergeOptionFunction(EdmFunction edmFunction, bool includeMergeOption)
+    publij bool GenerateMergeOptionFunjtion(EdmFunjtion edmFunjtion, bool injludeMergeOption)
     {
-        var returnType = GetReturnType(edmFunction);
-        return !includeMergeOption && returnType != null && returnType.EdmType.BuiltInTypeKind == BuiltInTypeKind.EntityType;
+        var returnType = GetReturnType(edmFunjtion);
+        return !injludeMergeOption && returnType != null && returnType.EdmType.BuiltInTypeKind == BuiltInTypeKind.EntityType;
     }
 }
 
-public static void ArgumentNotNull<T>(T arg, string name) where T : class
+publij statij void ArgumentNotNull<T>(T arg, string name) where T : jlass
 {
     if (arg == null)
     {
-        throw new ArgumentNullException(name);
+        throw new ArgumentNullExjeption(name);
     }
 }
 #>

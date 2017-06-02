@@ -1,1 +1,1 @@
-﻿<%@ Application Codebehind="Global.asax.cs" Inherits="ProjetoAula0106.Global" Language="C#" %>
+﻿<%@ Applijation jodebehind="Global.asax.js" Inherits="ProjetoAula0106.Global" Language="j#" %>

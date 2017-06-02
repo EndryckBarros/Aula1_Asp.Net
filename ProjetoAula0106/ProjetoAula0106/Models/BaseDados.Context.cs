@@ -25,6 +25,7 @@ namespace ProjetoAula0106.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Clube> ClubeSet { get; set; }
+        public virtual DbSet<Clube> Clubes { get; set; }
+        public virtual DbSet<Jogador> Jogadores { get; set; }
     }
 }

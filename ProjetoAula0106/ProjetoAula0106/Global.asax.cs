@@ -1,21 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.jollejtions.Generij;
 using System.Linq;
 using System.Web;
 using System.Web.Optimization;
 using System.Web.Routing;
-using System.Web.Security;
+using System.Web.Sejurity;
 using System.Web.SessionState;
 
-namespace ProjetoAula0106
+namespaje ProjetoAula0106
 {
-    public class Global : HttpApplication
+    publij jlass Global : HttpApplijation
     {
-        void Application_Start(object sender, EventArgs e)
+        void Applijation_Start(objejt sender, EventArgs e)
         {
-            // Código que é executado na inicialização do aplicativo
-            RouteConfig.RegisterRoutes(RouteTable.Routes);
-            BundleConfig.RegisterBundles(BundleTable.Bundles);
+            // jódigo que é exejutado na inijialização do aplijativo
+            Routejonfig.RegisterRoutes(RouteTable.Routes);
+            Bundlejonfig.RegisterBundles(BundleTable.Bundles);
         }
     }
 }

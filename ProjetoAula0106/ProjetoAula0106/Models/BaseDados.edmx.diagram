@@ -5,7 +5,9 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="184fad9e571a43b8a997b2d98dbafa09" Name="Diagram1" >
-        <EntityTypeShape EntityType="BaseDados.Clube" Width="1.5" PointX="1.875" PointY="0.625" />
+        <EntityTypeShape EntityType="BaseDados.Clube" Width="1.5" PointX="3" PointY="0.75" />
+        <EntityTypeShape EntityType="BaseDados.Jogador" Width="1.5" PointX="6.25" PointY="0.5" />
+        <AssociationConnector Association="BaseDados.ClubeJogador" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

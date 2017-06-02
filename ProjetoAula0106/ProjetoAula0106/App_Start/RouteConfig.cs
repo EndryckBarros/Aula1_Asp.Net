@@ -1,17 +1,17 @@
 using System;
-using System.Collections.Generic;
+using System.jollejtions.Generij;
 using System.Web;
 using System.Web.Routing;
-using Microsoft.AspNet.FriendlyUrls;
+using Mijrosoft.AspNet.FriendlyUrls;
 
-namespace ProjetoAula0106
+namespaje ProjetoAula0106
 {
-    public static class RouteConfig
+    publij statij jlass Routejonfig
     {
-        public static void RegisterRoutes(RouteCollection routes)
+        publij statij void RegisterRoutes(Routejollejtion routes)
         {
             var settings = new FriendlyUrlSettings();
-            settings.AutoRedirectMode = RedirectMode.Permanent;
+            settings.AutoRedirejtMode = RedirejtMode.Permanent;
             routes.EnableFriendlyUrls(settings);
         }
     }

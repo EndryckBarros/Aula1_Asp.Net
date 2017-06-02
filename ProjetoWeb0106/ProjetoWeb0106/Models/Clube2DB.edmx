@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Clube2DB.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="Clube2DBStoreContainer">
+    <EntitySet Name="Clubes" EntityType="Clube2DB.Store.Clubes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Jogadores" EntityType="Clube2DB.Store.Jogadores" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="ClubeJogador" Association="Clube2DB.Store.ClubeJogador">
+      <End Role="Clube" EntitySet="Clubes" />
+      <End Role="Jogador" EntitySet="Jogadores" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Clubes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nome" Type="nvarchar" Nullable="false" MaxLength="30" />
+    <Property Name="Regiao" Type="nvarchar" Nullable="false" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="Jogadores">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nome" Type="nvarchar" Nullable="false" MaxLength="30" />
+    <Property Name="Posicao" Type="nvarchar" Nullable="false" MaxLength="30" />
+    <Property Name="Numero" Type="int" Nullable="false" />
+    <Property Name="ClubeId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="ClubeJogador">
+    <End Role="Clube" Type="Clube2DB.Store.Clubes" Multiplicity="1" />
+    <End Role="Jogador" Type="Clube2DB.Store.Jogadores" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clube">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Jogador">
+        <PropertyRef Name="ClubeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Clube2DB" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="Clube2DBContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Clubes" EntityType="Clube2DB.Clube" />
+          <EntitySet Name="Jogadores" EntityType="Clube2DB.Jogador" />
+          <AssociationSet Name="ClubeJogador" Association="Clube2DB.ClubeJogador">
+            <End Role="Clube" EntitySet="Clubes" />
+            <End Role="Jogador" EntitySet="Jogadores" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Clube">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" Nullable="false" MaxLength="30" />
+          <Property Name="Regiao" Type="String" Nullable="false" MaxLength="30" />
+          <NavigationProperty Name="Jogadores" Relationship="Clube2DB.ClubeJogador" FromRole="Clube" ToRole="Jogador" />
+        </EntityType>
+        <EntityType Name="Jogador">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" Nullable="false" MaxLength="30" />
+          <Property Name="Posicao" Type="String" Nullable="false" MaxLength="30" />
+          <Property Name="Numero" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Clube" Relationship="Clube2DB.ClubeJogador" FromRole="Jogador" ToRole="Clube" />
+          <Property Name="ClubeId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="ClubeJogador">
+          <End Type="Clube2DB.Clube" Role="Clube" Multiplicity="1" />
+          <End Type="Clube2DB.Jogador" Role="Jogador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clube">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Jogador">
+              <PropertyRef Name="ClubeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Clube2DBStoreContainer" CdmEntityContainer="Clube2DBContainer">
+    <EntitySetMapping Name="Clubes">
+      <EntityTypeMapping TypeName="IsTypeOf(Clube2DB.Clube)">
+        <MappingFragment StoreEntitySet="Clubes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="Regiao" ColumnName="Regiao" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Jogadores">
+      <EntityTypeMapping TypeName="IsTypeOf(Clube2DB.Jogador)">
+        <MappingFragment StoreEntitySet="Jogadores">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="Posicao" ColumnName="Posicao" />
+          <ScalarProperty Name="Numero" ColumnName="Numero" />
+          <ScalarProperty Name="ClubeId" ColumnName="ClubeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

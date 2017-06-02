@@ -7,18 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Aula2505.View.Clubes {
+namespace Aula2505.View.Jogadors {
     
     
     public partial class Lista {
         
         /// <summary>
-        /// gvClubes control.
+        /// gvJogadors control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvClubes;
+        protected global::System.Web.UI.WebControls.GridView gvJogadors;
     }
 }
