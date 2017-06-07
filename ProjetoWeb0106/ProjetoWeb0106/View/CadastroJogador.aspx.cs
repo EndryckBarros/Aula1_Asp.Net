@@ -17,7 +17,10 @@ namespace ProjetoWeb0106.View
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            var Jogadores = contexto.Jogadores;
 
+            gvJogadores.DataSource = Jogadores.ToList();
+            gvJogadores.DataBind();
         }
 
         protected void btnSalvar_Click(object sender, EventArgs e)
