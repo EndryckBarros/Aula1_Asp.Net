@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using BaseModels;
 
 namespace DasProjektASP.Models
 {
@@ -29,5 +30,13 @@ namespace DasProjektASP.Models
         {
             return new ApplicationDbContext();
         }
+
+       public DbSet<Cliente> Clientes { get; set; }
+       public DbSet<Servico> Servicos { get; set; }
+       public DbSet<Reserva> Reservas { get; set; }
+
+       //public System.Data.Entity.DbSet<BaseModels.Cliente> Clientes { get; set; }
+       //public System.Data.Entity.DbSet<BaseModels.Servico> Servicos { get; set; }
+       //public System.Data.Entity.DbSet<BaseModels.Reserva> Reservas { get; set; }
     }
 }

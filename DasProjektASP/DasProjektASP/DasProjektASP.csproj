@@ -168,14 +168,17 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ReservasController.cs" />
+    <Compile Include="Controllers\ServicosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201707042234565_Inicial.cs" />
-    <Compile Include="Migrations\201707042234565_Inicial.Designer.cs">
-      <DependentUpon>201707042234565_Inicial.cs</DependentUpon>
+    <Compile Include="Migrations\201707042334565_Inicial.cs" />
+    <Compile Include="Migrations\201707042334565_Inicial.Designer.cs">
+      <DependentUpon>201707042334565_Inicial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -239,6 +242,21 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Clientes\Create.cshtml" />
+    <Content Include="Views\Clientes\Delete.cshtml" />
+    <Content Include="Views\Clientes\Details.cshtml" />
+    <Content Include="Views\Clientes\Edit.cshtml" />
+    <Content Include="Views\Clientes\Index.cshtml" />
+    <Content Include="Views\Reservas\Create.cshtml" />
+    <Content Include="Views\Reservas\Delete.cshtml" />
+    <Content Include="Views\Reservas\Details.cshtml" />
+    <Content Include="Views\Reservas\Edit.cshtml" />
+    <Content Include="Views\Reservas\Index.cshtml" />
+    <Content Include="Views\Servicos\Create.cshtml" />
+    <Content Include="Views\Servicos\Delete.cshtml" />
+    <Content Include="Views\Servicos\Details.cshtml" />
+    <Content Include="Views\Servicos\Edit.cshtml" />
+    <Content Include="Views\Servicos\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -252,9 +270,15 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201707042234565_Inicial.resx">
-      <DependentUpon>201707042234565_Inicial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201707042334565_Inicial.resx">
+      <DependentUpon>201707042334565_Inicial.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BaseModels\BaseModels.csproj">
+      <Project>{4a0e20a6-e866-416e-bf19-86fa92c9c814}</Project>
+      <Name>BaseModels</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

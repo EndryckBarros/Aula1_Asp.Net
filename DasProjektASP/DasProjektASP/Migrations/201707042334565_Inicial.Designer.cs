@@ -13,7 +13,7 @@ namespace DasProjektASP.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201707042234565_Inicial"; }
+            get { return "201707042334565_Inicial"; }
         }
         
         string IMigrationMetadata.Source

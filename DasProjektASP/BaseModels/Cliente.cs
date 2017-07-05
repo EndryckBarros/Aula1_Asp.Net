@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BaseModels
 {
-    class Cliente
+    public class Cliente
     {
         public int ClienteID { get; set; }
         [Required]

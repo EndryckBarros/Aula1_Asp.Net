@@ -21,12 +21,41 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
-            </div>
+                    
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                           aria-haspopup="true" aria-expanded="false">Cliente<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Listagem", "Index", "Clientes")</li>
+                            <li role="separator" class="divider"></li>
+                            <li>@Html.ActionLink("Cadastro", "Create", "Clientes")</li>
+                            <li role="separator" class="divider"></li>
+                        </ul>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                           aria-haspopup="true" aria-expanded="false">Reserva<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Listagem", "Index", "Reserva")</li>
+                            <li role="separator" class="divider"></li>
+                            <li>@Html.ActionLink("Cadastro", "Create", "Reserva")</li>
+                            <li role="separator" class="divider"></li>
+                        </ul>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                           aria-haspopup="true" aria-expanded="false">Servico<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Listagem", "Index", "Servico")</li>
+                            <li role="separator" class="divider"></li>
+                            <li>@Html.ActionLink("Cadastro", "Create", "Servico")</li>
+                            <li role="separator" class="divider"></li>
+                        </ul>
+
+
+</ul>
+                        @Html.Partial("_LoginPartial")
+</div>
         </div>
     </div>
     <div class="container body-content">
