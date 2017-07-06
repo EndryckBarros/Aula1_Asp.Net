@@ -1,0 +1,48 @@
+﻿@model BaseModels.Reserva
+
+@{
+    @ViewBag.Title = "Deletar";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<h3>Você tem certeza que deseja Deletar?</h3>
+<div>
+    <h4>Reserva</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model._Cliente.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model._Cliente.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model._Servico.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model._Servico.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Data)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Data)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Deletar" class="btn btn-danger" /> |
+            @Html.ActionLink("Retornar para List", "Index")
+        </div>
+    }
+</div>
