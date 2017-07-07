@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Reserve Service ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -17,7 +17,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Reserve Service", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -36,9 +36,9 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                            aria-haspopup="true" aria-expanded="false">Reserva<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("Listagem", "Index", "Reserva")</li>
+                            <li>@Html.ActionLink("Listagem", "Index", "Reservas")</li>
                             <li role="separator" class="divider"></li>
-                            <li>@Html.ActionLink("Cadastro", "Create", "Reserva")</li>
+                            <li>@Html.ActionLink("Cadastro", "Create", "Reservas")</li>
                             <li role="separator" class="divider"></li>
                         </ul>
 
@@ -46,9 +46,9 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                            aria-haspopup="true" aria-expanded="false">Servico<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("Listagem", "Index", "Servico")</li>
+                            <li>@Html.ActionLink("Listagem", "Index", "Servicos")</li>
                             <li role="separator" class="divider"></li>
-                            <li>@Html.ActionLink("Cadastro", "Create", "Servico")</li>
+                            <li>@Html.ActionLink("Cadastro", "Create", "Servicos")</li>
                             <li role="separator" class="divider"></li>
                         </ul>
                 </ul>

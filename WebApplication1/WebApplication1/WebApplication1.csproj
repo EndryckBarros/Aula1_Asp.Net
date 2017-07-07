@@ -204,9 +204,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201707060614291_Inicial.cs" />
-    <Compile Include="Migrations\201707060614291_Inicial.Designer.cs">
-      <DependentUpon>201707060614291_Inicial.cs</DependentUpon>
+    <Compile Include="Migrations\201707062224125_Inicial.cs" />
+    <Compile Include="Migrations\201707062224125_Inicial.Designer.cs">
+      <DependentUpon>201707062224125_Inicial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -216,6 +216,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -309,8 +310,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201707060614291_Inicial.resx">
-      <DependentUpon>201707060614291_Inicial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201707062224125_Inicial.resx">
+      <DependentUpon>201707062224125_Inicial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

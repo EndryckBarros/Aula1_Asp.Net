@@ -13,7 +13,7 @@ namespace WebApplication1.Controllers
 {
     public class ClientesController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private static ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Clientes
         public ActionResult Index()
@@ -51,9 +51,18 @@ namespace WebApplication1.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Clientes.Add(cliente);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                bool teste = TestarCliente(cliente);
+                if (teste)
+                {
+                    db.Clientes.Add(cliente);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+
+                }
+                
             }
 
             return View(cliente);
@@ -124,5 +133,21 @@ namespace WebApplication1.Controllers
             }
             base.Dispose(disposing);
         }
-    }
+
+
+        public static bool TestarCliente(Cliente cliente)
+        {
+            List<Cliente> clientes = new List<Cliente>();
+
+            clientes = db.Clientes.Where(x => x.Nome.Equals(cliente.Nome)).ToList();
+
+            if (clientes != null)
+            {
+                return false;
+            }
+            return true;
+        }
+
+
+        }
 }

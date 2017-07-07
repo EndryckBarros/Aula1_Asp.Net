@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using BaseModels;
 using WebApplication1.Models;
+
 
 namespace WebApplication1.Controllers
 {
@@ -46,17 +45,21 @@ namespace WebApplication1.Controllers
         }
 
         // POST: Reservas/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ReservaID,Data,ServicoID,ClienteID")] Reserva reserva)
         {
             if (ModelState.IsValid)
             {
-                db.Reservas.Add(reserva);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                //bool teste = TestarReserva(reserva);
+                //if (teste == false)
+                //{
+                //    //bootbox.alert("This is the default alert!");
+                //    //return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                //}
+                    db.Reservas.Add(reserva);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
             }
 
             ViewBag.ClienteID = new SelectList(db.Clientes, "ClienteID", "Nome", reserva.ClienteID);
@@ -82,8 +85,6 @@ namespace WebApplication1.Controllers
         }
 
         // POST: Reservas/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ReservaID,Data,ServicoID,ClienteID")] Reserva reserva)
@@ -133,5 +134,37 @@ namespace WebApplication1.Controllers
             }
             base.Dispose(disposing);
         }
+
+
+        //public static bool TestarReserva(Reserva reserva)
+        //{
+        //    List<Reserva> reservas = new List<Reserva>();
+
+        //    reservas = db.Reservas.Where(x => x.Data.Equals(reserva.Data)).ToList();
+
+        //    if(reservas != null)
+        //    {
+        //        return false;
+        //    }
+        //    return true;
+
+            //foreach (Reserva reservaTestada in reservas)
+            //{
+            //    if (reserva._Servico.Equals(reservaTestada._Servico))
+            //    {
+            //        return false;
+            //    }
+            //}
+
+            //foreach (Reserva reservaTestada in reservas)
+            //{
+            //    if (reserva._Cliente.Equals(reservaTestada._Cliente))
+            //    {
+            //        return false;
+            //    }
+            //}
+            
+       
+
     }
 }

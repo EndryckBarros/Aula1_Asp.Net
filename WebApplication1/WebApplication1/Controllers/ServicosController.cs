@@ -13,7 +13,7 @@ namespace WebApplication1.Controllers
 {
     public class ServicosController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private static ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Servicos
         public ActionResult Index()
@@ -124,5 +124,20 @@ namespace WebApplication1.Controllers
             }
             base.Dispose(disposing);
         }
+
+
+        public static bool TestarReserva(Servico servico)
+        {
+            List<Servico> servicos = new List<Servico>();
+
+            servicos = db.Servicoes.Where(x => x.Nome.Equals(servico.Nome)).ToList();
+
+            if (servicos != null)
+            {
+                return false;
+            }
+            return true;
+        }
+
     }
 }
